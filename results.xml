@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1620417691" />
+    <testcase name="test_all" classname="test.test_memLCDdriver" file="/home/zerotoasic/memLCDdriver/test/test_memLCDdriver.py" lineno="46" time="2673.295211791992" sim_time_ns="149923721.0" ratio_time="56081.99211919491" />
+  </testsuite>
+</testsuites>

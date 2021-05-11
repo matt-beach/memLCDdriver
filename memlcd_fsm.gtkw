@@ -1,0 +1,48 @@
+[*]
+[*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
+[*] Wed May  5 18:23:44 2021
+[*]
+[dumpfile] "/home/zerotoasic/memLCDdriver/memlcd_fsm.vcd"
+[dumpfile_mtime] "Wed May  5 17:51:36 2021"
+[dumpfile_size] 45932100
+[savefile] "/home/zerotoasic/memLCDdriver/memlcd_fsm.gtkw"
+[timestart] 852900000
+[size] 992 888
+[pos] 3745 40
+*-25.323502 893800000 514000000 549200000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 48
+[signals_width] 180
+[sst_expanded] 0
+[sst_vpaned_height] 244
+@28
+memlcd_fsm.i_clk
+memlcd_fsm.i_reset
+@22
+memlcd_fsm.i_data[7:0]
+@24
+memlcd_fsm.i_rempty
+@28
+memlcd_fsm.o_rinc
+@200
+-
+@28
+memlcd_fsm.o_intb
+memlcd_fsm.o_gsp
+memlcd_fsm.o_gck
+@29
+memlcd_fsm.o_gen
+@28
+memlcd_fsm.o_bsp
+memlcd_fsm.o_bck
+@22
+memlcd_fsm.o_rgb[5:0]
+@200
+-
+@28
+memlcd_fsm.r_active_h
+@24
+memlcd_fsm.r_count_iclk[2:0]
+memlcd_fsm.r_count_h[6:0]
+memlcd_fsm.r_count_v[9:0]
+[pattern_trace] 1
+[pattern_trace] 0
