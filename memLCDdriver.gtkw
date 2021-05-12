@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
-[*] Fri May  7 01:43:55 2021
+[*] Wed May 12 02:07:24 2021
 [*]
 [dumpfile] "/home/zerotoasic/memLCDdriver/memLCDdriver.vcd"
-[dumpfile_mtime] "Thu May  6 23:46:03 2021"
-[dumpfile_size] 778265784
+[dumpfile_mtime] "Wed May 12 02:02:24 2021"
+[dumpfile_size] 756927758
 [savefile] "/home/zerotoasic/memLCDdriver/memLCDdriver.gtkw"
-[timestart] 134200000
-[size] 1848 911
+[timestart] 386965
+[size] 1848 902
 [pos] 1963 28
-*-20.039835 138813000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-8.695967 387418 389110 389470 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] memLCDdriver.
 [sst_width] 233
 [signals_width] 192
@@ -67,7 +67,8 @@ memLCDdriver.afifo.w_wptr[5:0]
 memLCDdriver.memlcd_fsm.r_count_iclk[2:0]
 @24
 memLCDdriver.memlcd_fsm.r_count_h[6:0]
-@25
 memLCDdriver.memlcd_fsm.r_count_v[9:0]
+@29
+memLCDdriver.memlcd_fsm.r_finish_frame
 [pattern_trace] 1
 [pattern_trace] 0

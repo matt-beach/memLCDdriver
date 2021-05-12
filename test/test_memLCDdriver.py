@@ -73,4 +73,4 @@ async def test_all(dut):
     # Flush the FIFO and finish signaling
     while (dut.o_rempty == 0):
         await ClockCycles(dut.i_clk, 10)
-    await ClockCycles(dut.i_clk, 1000000) #10ms
+    await ClockCycles(dut.i_clk, 500000) # 5ms

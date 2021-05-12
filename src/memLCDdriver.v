@@ -43,8 +43,8 @@ module memLCDdriver (
         .o_clk_div(w_clk_vcom)
     );
 
-    // Generate 2MHz slow clock for LCD timing
-    clockdiv #(.DIVISOR(20), .SIZE(6)) afifo_clockdiv (
+    // Generate slow clock for LCD timing
+    clockdiv #(.DIVISOR(16), .SIZE(6)) afifo_clockdiv (
         .i_clk(i_clk), 
         .i_reset(i_reset), 
         .o_clk_div(w_rclk)

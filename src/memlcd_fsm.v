@@ -133,9 +133,9 @@ module memlcd_fsm #(
 
 	// Finsh frame 
 	always @(*) begin
-		if (((r_count_v >= 640) && (r_count_h > 120)) || (r_count_v > 640)) begin
+		if ((r_count_v == 640) && (r_count_h == 120)) begin
 			r_finish_frame <= 1'b1;
-		end else begin
+		end else if ((r_count_v == `VLINES) && (r_count_h == `HLINES-20)) begin
 			r_finish_frame <= 1'b0;
 		end
 	end
