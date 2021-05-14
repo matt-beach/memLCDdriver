@@ -21,7 +21,7 @@ module memlcd_fsm #(
     output 	[5:0]			o_rgb
 );
 
-	reg		[2:0]			r_count_iclk; 	// For adjusting control signal setup and hold times
+	reg		[6:0]			r_count_iclk; 	// For adjusting control signal setup and hold times
 	reg		[6:0]			r_count_h;		// Keep track of horizontal pixal position
 	reg		[9:0]			r_count_v;		// Keep track of vertical pixal position
 	reg 					r_active_h;
@@ -55,21 +55,18 @@ module memlcd_fsm #(
 
 			r_active_h		<= 0; // Used as a wire in an always @(*)
 
-		/*
-		need to fix the (!i_rempty) condition to allow the frame to finish.
-		*/
 		end else if (!i_rempty || r_finish_frame) begin // Only proceed with signaling if the FIFO is not empty
 			// Update counter registers
-			r_count_iclk <= (r_count_iclk == 7) ? 0 : r_count_iclk + 1'b1;
-			if (r_count_iclk == 7) begin
+			r_count_iclk <= (r_count_iclk == 127) ? 0 : r_count_iclk + 1'b1;
+			if (r_count_iclk == 127) begin
 				r_count_h <= (r_count_h == `HLINES) ? 0 : r_count_h + 1'b1;
 			end
-			if ((r_count_iclk == 7) && (r_count_h == `HLINES)) begin
+			if ((r_count_iclk == 127) && (r_count_h == `HLINES)) begin
 				r_count_v <= (r_count_v == `VLINES) ? 0 : r_count_v + 1'b1;
 			end
 
 			// r_rinc control
-			if ((r_count_iclk == 7) && ((r_count_h > 0) && (r_count_h < 121)) && r_active_h) begin
+			if ((r_count_iclk == 127) && ((r_count_h > 0) && (r_count_h < 121)) && r_active_h) begin
 				r_rinc <= 1'b1;
 			end else begin
 				r_rinc <= 1'b0;
@@ -83,19 +80,19 @@ module memlcd_fsm #(
 			end
 
 			// r_bck control
-			if ((r_count_iclk == 5) && r_active_h) begin
+			if ((r_count_iclk == 80) && r_active_h) begin
 				r_bck <= ~r_bck;
 			end
 
 			// r_bsp control
-			if ((r_count_iclk == 3) && (r_count_h == 0) && r_active_h) begin
+			if ((r_count_iclk == 48) && (r_count_h == 0) && r_active_h) begin
 				r_bsp <= 1'b1;
-			end else if ((r_count_iclk == 3) && (r_count_h == 2)) begin
+			end else if ((r_count_iclk == 48) && (r_count_h == 2)) begin
 				r_bsp <= 1'b0;
 			end
 
 			// r_gck control
-			if ((r_count_iclk == 1) && (r_count_h == 0)) begin
+			if ((r_count_iclk == 16) && (r_count_h == 0)) begin
 				r_gck <= ~r_gck;
 			end
 

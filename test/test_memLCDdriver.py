@@ -55,10 +55,10 @@ async def test_all(dut):
     data = 0x01
     packet_count = 0
     send_packet = 0
-    while (packet_count < 120*640*1): # send image frames (120*640 for a frame)
+    while (packet_count < 120*640): # send image frames (120*640 for a frame)
         if (dut.o_wfull == 1):
             send_packet = 0
-        if (dut.o_rempty_almost == 1):
+        if (dut.o_rempty == 1): # change to o_rempty_almost
             send_packet = 1
 
         if (send_packet == 1):

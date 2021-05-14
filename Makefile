@@ -1,6 +1,6 @@
 # FPGA variables
 PROJECT = fpga/memLCDdriver
-SOURCES= src/memLCDdriver.v src/clockdiv.v src/afifo.v src/greyCounter.v src/spi_s.v
+SOURCES= src/memLCDdriver.v src/memlcd_fsm.v src/clockdiv.v src/spi_s.v src/sfifo.v src/fifomem.v
 ICEBREAKER_DEVICE = up5k
 ICEBREAKER_PIN_DEF = fpga/icebreaker.pcf
 ICEBREAKER_PACKAGE = sg48
@@ -15,7 +15,7 @@ all: test_memLCDdriver test_afifo test_spi_s
 test_memLCDdriver:
 	rm -rf sim_build/
 	mkdir sim_build/
-	iverilog -o sim_build/sim.vvp -s memLCDdriver -s dump -g2012 src/memLCDdriver.v test/dump_memLCDdriver.v src/ src/memlcd_fsm.v src/clockdiv.v src/spi_s.v src/afifo.v src/async_cmp.v src/fifomem.v src/rptr_empty.v src/wptr_full.v
+	iverilog -o sim_build/sim.vvp -s memLCDdriver -s dump -g2012 src/memLCDdriver.v test/dump_memLCDdriver.v src/ src/memlcd_fsm.v src/clockdiv.v src/spi_s.v src/sfifo.v src/fifomem.v
 	PYTHONOPTIMIZE=${NOASSERT} MODULE=test.test_memLCDdriver vvp -M $$(cocotb-config --prefix)/cocotb/libs -m libcocotbvpi_icarus sim_build/sim.vvp
 
 test_afifo:
@@ -23,6 +23,12 @@ test_afifo:
 	mkdir sim_build/
 	iverilog -o sim_build/sim.vvp -s afifo -s dump -g2012 src/afifo.v test/dump_afifo.v src/ src/async_cmp.v src/fifomem.v src/rptr_empty.v src/wptr_full.v
 	PYTHONOPTIMIZE=${NOASSERT} MODULE=test.test_afifo vvp -M $$(cocotb-config --prefix)/cocotb/libs -m libcocotbvpi_icarus sim_build/sim.vvp
+
+test_sfifo:
+	rm -rf sim_build/
+	mkdir sim_build/
+	iverilog -o sim_build/sim.vvp -s sfifo -s dump -g2012 src/sfifo.v test/dump_sfifo.v src/ src/fifomem.v
+	PYTHONOPTIMIZE=${NOASSERT} MODULE=test.test_sfifo vvp -M $$(cocotb-config --prefix)/cocotb/libs -m libcocotbvpi_icarus sim_build/sim.vvp
 
 test_spi_s:
 	rm -rf sim_build/

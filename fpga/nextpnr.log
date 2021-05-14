@@ -1,0 +1,5 @@
+Info: constrained 'i_clk' to bel 'X12/Y31/io1'
+Info: constrained 'i_reset' to bel 'X16/Y0/io0'
+ERROR: IO 'i_spi_clk' is unconstrained in PCF (override this error with --pcf-allow-unconstrained)
+ERROR: Loading PCF failed.
+0 warnings, 2 errors

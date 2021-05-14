@@ -8,12 +8,10 @@ module memLCDdriver (
     output  o_wfull_almost,
     output  o_rempty,
     output  o_rempty_almost,
-
     // SPI RX Port
     input   i_spi_mosi,
     input   i_spi_nss,
     input   i_spi_clk,
-
     // Memory LCD signals
     output  o_va,
     output  o_vb,
@@ -43,12 +41,12 @@ module memLCDdriver (
         .o_clk_div(w_clk_vcom)
     );
 
-    // Generate slow clock for LCD timing
-    clockdiv #(.DIVISOR(16), .SIZE(6)) afifo_clockdiv (
-        .i_clk(i_clk), 
-        .i_reset(i_reset), 
-        .o_clk_div(w_rclk)
-    );
+    // // Generate slow clock for LCD timing
+    // clockdiv #(.DIVISOR(16), .SIZE(6)) afifo_clockdiv (
+    //     .i_clk(i_clk), 
+    //     .i_reset(i_reset), 
+    //     .o_clk_div(w_rclk)
+    // );
 
     // SPI Reciever
     spi_s spi_s(
@@ -61,24 +59,39 @@ module memLCDdriver (
         .o_rx_dataValid(w_spi_dataValid)
     );
 
-    // Asyncronous FIFO
-    afifo #(.DATA_WIDTH(8), .ADDR_WIDTH(6)) afifo (
-        .o_rdata(w_lcd_data),
-        .i_wdata(w_spi_data),
-        .o_wfull(w_wfull),
-        .o_wfull_almost(o_wfull_almost),
-        .o_rempty(w_rempty),
-        .o_rempty_almost(o_rempty_almost),
-        .i_wclk(i_clk),
-        .i_rclk(w_rclk),
-        .i_winc(w_spi_dataValid),
-        .i_rinc(w_rinc),
-        .i_wrst_n(~i_reset),
-        .i_rrst_n(~i_reset)
+    // Syncronous FIFO
+    sfifo #(.DATA_WIDTH(8), .ADDR_WIDTH(6)) sfifo (
+        .i_clk(i_clk),
+        .i_reset(i_reset),
+	    .o_rdata(w_lcd_data),
+	    .i_wdata(w_spi_data),
+	    .i_rinc(w_rinc),
+	    .i_winc(w_spi_dataValid),
+	    .o_wfull(w_wfull),
+	    .o_wfull_almost(o_wfull_almost),
+	    .o_rempty(w_rempty),
+	    .o_rempty_almost(o_rempty_almost)
     );
 
+
+    // // Asyncronous FIFO
+    // afifo #(.DATA_WIDTH(8), .ADDR_WIDTH(6)) afifo (
+    //     .o_rdata(w_lcd_data),
+    //     .i_wdata(w_spi_data),
+    //     .o_wfull(w_wfull),
+    //     .o_wfull_almost(o_wfull_almost),
+    //     .o_rempty(w_rempty),
+    //     .o_rempty_almost(o_rempty_almost),
+    //     .i_wclk(i_clk),
+    //     .i_rclk(w_rclk),
+    //     .i_winc(w_spi_dataValid),
+    //     .i_rinc(w_rinc),
+    //     .i_wrst_n(~i_reset),
+    //     .i_rrst_n(~i_reset)
+    // );
+
     memlcd_fsm #(.DATA_WIDTH(8)) memlcd_fsm (
-        .i_clk(w_rclk),
+        .i_clk(i_clk),
         .i_reset(i_reset),
         .i_data(w_lcd_data),
         .i_rempty(w_rempty),

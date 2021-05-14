@@ -1,0 +1,31 @@
+[*]
+[*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
+[*] Fri May 14 01:29:49 2021
+[*]
+[dumpfile] "/home/zerotoasic/memLCDdriver/sfifo.vcd"
+[dumpfile_mtime] "Fri May 14 01:25:59 2021"
+[dumpfile_size] 3379
+[savefile] "/home/zerotoasic/memLCDdriver/sfifo.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-7.811650 230 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 233
+[signals_width] 190
+[sst_expanded] 1
+[sst_vpaned_height] 144
+@28
+sfifo.i_clk
+sfifo.i_reset
+@25
+sfifo.i_wdata[7:0]
+@28
+sfifo.i_winc
+@24
+sfifo.o_rdata[7:0]
+@28
+sfifo.i_rinc
+sfifo.o_wfull
+sfifo.o_rempty
+[pattern_trace] 1
+[pattern_trace] 0
