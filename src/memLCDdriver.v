@@ -41,13 +41,6 @@ module memLCDdriver (
         .o_clk_div(w_clk_vcom)
     );
 
-    // // Generate slow clock for LCD timing
-    // clockdiv #(.DIVISOR(16), .SIZE(6)) afifo_clockdiv (
-    //     .i_clk(i_clk), 
-    //     .i_reset(i_reset), 
-    //     .o_clk_div(w_rclk)
-    // );
-
     // SPI Reciever
     spi_s spi_s(
         .i_clk(i_clk),
@@ -60,7 +53,7 @@ module memLCDdriver (
     );
 
     // Syncronous FIFO
-    sfifo #(.DATA_WIDTH(8), .ADDR_WIDTH(16)) sfifo (
+    sfifo #(.DATA_WIDTH(8), .ADDR_WIDTH(12)) sfifo (
         .i_clk(i_clk),
         .i_reset(i_reset),
 	    .o_rdata(w_lcd_data),
@@ -73,23 +66,7 @@ module memLCDdriver (
 	    .o_rempty_almost(o_rempty_almost)
     );
 
-
-    // // Asyncronous FIFO
-    // afifo #(.DATA_WIDTH(8), .ADDR_WIDTH(6)) afifo (
-    //     .o_rdata(w_lcd_data),
-    //     .i_wdata(w_spi_data),
-    //     .o_wfull(w_wfull),
-    //     .o_wfull_almost(o_wfull_almost),
-    //     .o_rempty(w_rempty),
-    //     .o_rempty_almost(o_rempty_almost),
-    //     .i_wclk(i_clk),
-    //     .i_rclk(w_rclk),
-    //     .i_winc(w_spi_dataValid),
-    //     .i_rinc(w_rinc),
-    //     .i_wrst_n(~i_reset),
-    //     .i_rrst_n(~i_reset)
-    // );
-
+    // LCD controller
     memlcd_fsm #(.DATA_WIDTH(8)) memlcd_fsm (
         .i_clk(i_clk),
         .i_reset(i_reset),
