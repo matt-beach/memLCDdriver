@@ -24,41 +24,32 @@ set_io -nowarn FLASH_IO2  12
 set_io -nowarn FLASH_IO3  13
 
 # PMOD 1A
-set_io -nowarn P1A1        4
-set_io -nowarn P1A2        2
-set_io -nowarn P1A3       47
-set_io -nowarn P1A4       45
-set_io -nowarn P1A7        3
-set_io -nowarn P1A8       48
-set_io -nowarn P1A9       46
-set_io -nowarn P1A10      44
+set_io -nowarn i_spi_mosi       4
+set_io -nowarn i_spi_nss        2
+set_io -nowarn i_spi_clk        47
+set_io -nowarn o_va             45
+set_io -nowarn o_vb             3
+set_io -nowarn o_vcom           48
+set_io -nowarn o_gsp            46
+set_io -nowarn o_gck            44
 
 # PMOD 1B
-set_io -nowarn P1B1       43
-set_io -nowarn P1B2       38
-set_io -nowarn P1B3       34
-set_io -nowarn P1B4       31
-set_io -nowarn P1B7       42
-set_io -nowarn P1B8       36
-set_io -nowarn P1B9       32
-set_io -nowarn P1B10      28
+set_io -nowarn o_gen            43
+set_io -nowarn o_intb           38
+set_io -nowarn o_bsp            34
+set_io -nowarn o_bck            31
+set_io -nowarn o_rgb[0]         42
+set_io -nowarn o_rgb[1]         36
+set_io -nowarn o_rgb[2]         32
+set_io -nowarn o_rgb[3]         28
 
 # PMOD 2
-set_io -nowarn P2_1       27
-set_io -nowarn P2_2       25
-set_io -nowarn P2_3       21
-set_io -nowarn P2_4       19
-set_io -nowarn P2_7       26
-set_io -nowarn P2_8       23
-set_io -nowarn P2_9       20
-set_io -nowarn P2_10      18
+set_io -nowarn o_rgb[4]         27
+set_io -nowarn o_rgb[5]         25
+set_io -nowarn o_wfull          21
+set_io -nowarn o_wfull_almost   19
+set_io -nowarn o_rempty         26
+set_io -nowarn o_rempty_almost  23
+set_io -nowarn P2_9             20
+set_io -nowarn P2_10            18
 
-# LEDs and Buttons (PMOD 2)
-# set_io -nowarn LED1       27
-# set_io -nowarn LED2       25
-# set_io -nowarn LED3       21
-# set_io -nowarn BTN2       19
-# set_io -nowarn LED5       26
-# set_io -nowarn LED4       23
-# set_io -nowarn BTN1       20
-# set_io -nowarn BTN3       18

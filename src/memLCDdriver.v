@@ -60,7 +60,7 @@ module memLCDdriver (
     );
 
     // Syncronous FIFO
-    sfifo #(.DATA_WIDTH(8), .ADDR_WIDTH(6)) sfifo (
+    sfifo #(.DATA_WIDTH(8), .ADDR_WIDTH(16)) sfifo (
         .i_clk(i_clk),
         .i_reset(i_reset),
 	    .o_rdata(w_lcd_data),

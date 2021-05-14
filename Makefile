@@ -9,7 +9,7 @@ SEED = 1
 # COCOTB variables
 export COCOTB_REDUCED_LOG_FMT=1
 
-all: test_memLCDdriver test_afifo test_spi_s
+all: test_memLCDdriver test_sfifo test_afifo test_spi_s
 
 # if you run rules with NOASSERT=1 it will set PYTHONOPTIMIZE, which turns off assertions in the tests
 test_memLCDdriver:

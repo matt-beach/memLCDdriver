@@ -27,15 +27,15 @@ module sfifo #(
     wire                        w_rinc;
     reg                         r_wfull_almost;
     reg                         r_rempty_almost;
-    wire                        w_bin_diff_rsw;
-    wire                        w_bin_diff_wsr;
+    wire    [ADDR_WIDTH-1:0]    w_bin_diff_rsw;
+    wire    [ADDR_WIDTH-1:0]    w_bin_diff_wsr;
 
     assign o_wfull  = (r_status_cnt == (FIFO_DEPTH-1));
     assign o_rempty = (r_status_cnt == 0);
     assign o_rdata  = r_data_out;
 
-    assign w_winc = i_winc & !o_wfull;
-    assign w_rinc = i_rinc & !o_rempty;
+    assign w_winc = i_winc & !o_wfull; // Protect from overflow
+    assign w_rinc = i_rinc & !o_rempty; // Protect from underflow
 
     // Write Pointer
     always @(posedge i_clk or posedge i_reset) begin
@@ -59,9 +59,9 @@ module sfifo #(
     always @(posedge i_clk or posedge i_reset) begin
         if (i_reset) begin
             r_status_cnt <= 0;
-        end else if (!w_winc && w_rinc && (r_status_cnt != 0)) begin // Read but no write
+        end else if (!w_winc && w_rinc && (r_status_cnt != 0)) begin // Read but no write when not empty
             r_status_cnt <= r_status_cnt - 1;
-        end else if (w_winc && !w_rinc && (r_status_cnt != FIFO_DEPTH)) begin // Write but no read
+        end else if (w_winc && !w_rinc && (r_status_cnt != FIFO_DEPTH)) begin // Write but no read when not full
             r_status_cnt <= r_status_cnt + 1;
         end
     end
@@ -75,7 +75,7 @@ module sfifo #(
         end
     end
 
-	// Almost Empty Condition
+	// Almost Empty
 	assign w_bin_diff_wsr = r_wr_ptr - r_rd_ptr;
 	assign o_rempty_almost = r_rempty_almost;
 	always @(*) begin
@@ -86,7 +86,7 @@ module sfifo #(
 		end
 	end
 
-	// Almost Full Condition
+	// Almost Full
 	assign w_bin_diff_rsw = r_rd_ptr - r_wr_ptr;
 	assign o_wfull_almost = r_wfull_almost;
 	always @(*) begin
