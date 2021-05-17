@@ -5,7 +5,7 @@ module spi_s (
 	input			i_reset,
 
 	input 			i_spi_mosi,
-	input 			i_spi_nss,
+	input 			i_spi_cs_n,
 	input			i_spi_clk,
 
 	output	[7:0] 	o_rx_data,
@@ -14,7 +14,7 @@ module spi_s (
 
 	// Registers
 	reg				r_spi_mosi;
-	reg 			r_spi_nss;
+	reg 			r_spi_cs_n;
 	reg 			r_spi_clk;
 	reg 			r_prev_spi_clk;
 	reg 			r_prev_spi_nss;
@@ -33,15 +33,15 @@ module spi_s (
 	always @(posedge i_clk) begin
 		// Buffered input data
 		r_spi_mosi	<= i_spi_mosi;
-		r_spi_nss 	<= i_spi_nss;
+		r_spi_cs_n 	<= i_spi_cs_n;
 		r_spi_clk 	<= i_spi_clk;
 		// Previous state history
 		r_prev_spi_clk <= r_spi_clk;
-		r_prev_spi_nss <= r_spi_nss;
+		r_prev_spi_nss <= r_spi_cs_n;
 	end
 	assign w_rising_spi_clk = r_spi_clk & ~r_prev_spi_clk;   // Pulse on rising spi clk edge
-	assign w_valid_spi_bit	= w_rising_spi_clk & ~r_spi_nss; // Valid spi bit when nss is low
-	assign w_spi_packet_start = r_prev_spi_nss & ~r_spi_nss; // Packet start on falling nss edge
+	assign w_valid_spi_bit	= w_rising_spi_clk & ~r_spi_cs_n; // Valid spi bit when nss is low
+	assign w_spi_packet_start = r_prev_spi_nss & ~r_spi_cs_n; // Packet start on falling nss edge
 
 	// Capture incoming SPI Data
 	always @(posedge i_clk) begin

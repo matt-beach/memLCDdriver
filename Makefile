@@ -1,6 +1,6 @@
 # FPGA variables
 PROJECT = fpga/memLCDdriver
-SOURCES= src/memLCDdriver.v src/memlcd_fsm.v src/clockdiv.v src/spi_s.v src/sfifo.v src/fifomem.v
+SOURCES = src/memLCDdriver.v src/memlcd_fsm.v src/clockdiv.v src/spi_s.v src/sfifo.v src/fifomem.v
 ICEBREAKER_DEVICE = up5k
 ICEBREAKER_PIN_DEF = fpga/icebreaker.pcf
 ICEBREAKER_PACKAGE = sg48
