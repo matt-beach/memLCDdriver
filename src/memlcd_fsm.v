@@ -51,7 +51,6 @@ module memlcd_fsm #(
 			r_count_iclk 	<= 0;
 			r_count_h 		<= `HLINES-20;
 			r_count_v 		<= `VLINES;
-			r_active_h		<= 0;
 
 		end else if (!i_rempty || r_finish_frame) begin // Only proceed with signaling if the FIFO is not empty
 			// Update clock counter
@@ -121,21 +120,28 @@ module memlcd_fsm #(
 		end
 	end
 
-
-	always @(posedge i_clk) begin
-		if ((r_count_v >= 1) && (r_count_v < 641)) begin
-			r_active_h <= 1'b1;
-		end else begin
+	always @(posedge i_clk or posedge i_reset) begin
+		if (i_reset) begin
 			r_active_h <= 1'b0;
+		end else begin
+			if ((r_count_v >= 1) && (r_count_v < 641)) begin
+				r_active_h <= 1'b1;
+			end else begin
+				r_active_h <= 1'b0;
+			end
 		end
 	end
 
 	// Finsh frame 
-	always @(posedge i_clk) begin
-		if ((r_count_v == 640) && (r_count_h == 120)) begin
-			r_finish_frame <= 1'b1;
-		end else if ((r_count_v == `VLINES) && (r_count_h == `HLINES-20)) begin
+	always @(posedge i_clk or posedge i_reset) begin
+		if (i_reset) begin
 			r_finish_frame <= 1'b0;
+		end else begin
+			if ((r_count_v == 640) && (r_count_h == 120)) begin
+				r_finish_frame <= 1'b1;
+			end else if ((r_count_v == `VLINES) && (r_count_h == `HLINES-20)) begin
+				r_finish_frame <= 1'b0;
+			end
 		end
 	end
 
