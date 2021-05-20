@@ -10,7 +10,7 @@ module memLCDdriver (
     output  o_rempty_almost,
     // SPI RX Port
     input   i_spi_mosi,
-    input   i_spi_nss,
+    input   i_spi_cs_n,
     input   i_spi_clk,
     // Memory LCD signals
     output  o_va,
@@ -46,14 +46,14 @@ module memLCDdriver (
         .i_clk(i_clk),
         .i_reset(i_reset),
         .i_spi_mosi(i_spi_mosi),
-        .i_spi_nss(i_spi_nss),
+        .i_spi_cs_n(i_spi_cs_n),
         .i_spi_clk(i_spi_clk),
         .o_rx_data(w_spi_data),
         .o_rx_dataValid(w_spi_dataValid)
     );
 
     // Syncronous FIFO
-    sfifo #(.DATA_WIDTH(8), .ADDR_WIDTH(12)) sfifo (
+    sfifo #(.DATA_WIDTH(8), .ADDR_WIDTH(6)) sfifo (
         .i_clk(i_clk),
         .i_reset(i_reset),
 	    .o_rdata(w_lcd_data),

@@ -6,14 +6,14 @@ import random
 async def reset(dut):
     dut.i_reset     <= 1
     dut.i_spi_mosi  <= 0
-    dut.i_spi_nss   <= 1
+    dut.i_spi_cs_n   <= 1
     dut.i_spi_clk   <= 0
     await ClockCycles(dut.i_clk, 5)
     dut.i_reset <= 0
     await ClockCycles(dut.i_clk, 5)
 
 async def send_byte(dut, data):
-    dut.i_spi_nss   <= 0 # start data packet
+    dut.i_spi_cs_n   <= 0 # start data packet
     for i in range(8):
         dut.i_spi_clk   <= 0
         dut.i_spi_mosi  <= (data >> (7-i)) & 0x1
@@ -24,12 +24,12 @@ async def send_byte(dut, data):
     dut.i_spi_clk   <= 0
     await ClockCycles(dut.i_clk, 4)
     dut.i_spi_mosi  <= 0
-    dut.i_spi_nss   <= 1 # end data packet
+    dut.i_spi_cs_n   <= 1 # end data packet
     await ClockCycles(dut.i_clk, 8)
 
 
 async def send_word(dut, data):
-    dut.i_spi_nss   <= 0 # start data packet
+    dut.i_spi_cs_n   <= 0 # start data packet
     for i in range(32):
         dut.i_spi_clk   <= 0
         dut.i_spi_mosi  <= (data >> (31-i)) & 0x1
@@ -40,7 +40,7 @@ async def send_word(dut, data):
     dut.i_spi_clk   <= 0
     await ClockCycles(dut.i_clk, 4)
     dut.i_spi_mosi  <= 0 
-    dut.i_spi_nss   <= 1 # end data packet
+    dut.i_spi_cs_n   <= 1 # end data packet
     await ClockCycles(dut.i_clk, 8)
 
 @cocotb.test()

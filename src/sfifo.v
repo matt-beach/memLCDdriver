@@ -77,25 +77,25 @@ module sfifo #(
 
 	// Almost Empty
 	assign w_bin_diff_wsr = r_wr_ptr - r_rd_ptr;
-	assign o_rempty_almost = r_rempty_almost;
 	always @(*) begin
-		if ((w_bin_diff_wsr > 0 && w_bin_diff_wsr < 4) || o_rempty) begin
+		if ((w_bin_diff_wsr > 0 && w_bin_diff_wsr <= 4) || o_rempty) begin
 			r_rempty_almost <= 1'b1;
 		end else begin
 			r_rempty_almost <= 1'b0;
 		end
 	end
+	assign o_rempty_almost = r_rempty_almost;
 
 	// Almost Full
 	assign w_bin_diff_rsw = r_rd_ptr - r_wr_ptr;
-	assign o_wfull_almost = r_wfull_almost;
 	always @(*) begin
-		if ((w_bin_diff_rsw > 0 && w_bin_diff_rsw < 4) || o_wfull) begin
+		if ((w_bin_diff_rsw > 0 && w_bin_diff_rsw <= 4) || o_wfull) begin
 			r_wfull_almost <= 1'b1;
 		end else begin
 			r_wfull_almost <= 1'b0;
 		end
 	end
+	assign o_wfull_almost = r_wfull_almost;
 
     // Duel Port RAM
 	fifomem #(.DATA_WIDTH(DATA_WIDTH), .ADDR_WIDTH(ADDR_WIDTH)) fifomem (
