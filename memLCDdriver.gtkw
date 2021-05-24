@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
-[*] Mon May 17 19:40:31 2021
+[*] Fri May 21 06:14:58 2021
 [*]
-[dumpfile] "/home/zerotoasic/memLCDdriver/memLCDdriver.vcd"
-[dumpfile_mtime] "Mon May 17 18:55:38 2021"
-[dumpfile_size] 693648750
-[savefile] "/home/zerotoasic/memLCDdriver/memLCDdriver.gtkw"
+[dumpfile] "/home/zerotoasic/asic_tools/openlane/designs/wrapped_memLCDdriver/memLCDdriver/memLCDdriver.vcd"
+[dumpfile_mtime] "Fri May 21 06:12:41 2021"
+[dumpfile_size] 237924050
+[savefile] "/home/zerotoasic/asic_tools/openlane/designs/wrapped_memLCDdriver/memLCDdriver/memLCDdriver.gtkw"
 [timestart] 0
-[size] 1848 911
-[pos] 1963 28
-*-23.890640 31260000 389110 389470 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 1562 902
+[pos] 2174 28
+*-23.099136 33333400 16666720 33333400 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] memLCDdriver.
 [sst_width] 233
 [signals_width] 192
@@ -26,8 +26,7 @@ memLCDdriver.i_spi_mosi
 [color] 1
 memLCDdriver.i_spi_clk
 memLCDdriver.i_spi_cs_n
-@29
-memLCDdriver.w_spi_dataValid
+memLCDdriver.o_spi_cts
 @200
 -
 @28
@@ -56,6 +55,8 @@ memLCDdriver.o_rgb[5:0]
 memLCDdriver.o_va
 memLCDdriver.o_vb
 memLCDdriver.o_vcom
+@29
+memLCDdriver.i_vcom_start
 @200
 -
 @24
