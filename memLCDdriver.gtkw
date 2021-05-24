@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
-[*] Fri May 21 06:14:58 2021
+[*] Mon May 24 20:33:08 2021
 [*]
-[dumpfile] "/home/zerotoasic/asic_tools/openlane/designs/wrapped_memLCDdriver/memLCDdriver/memLCDdriver.vcd"
-[dumpfile_mtime] "Fri May 21 06:12:41 2021"
-[dumpfile_size] 237924050
-[savefile] "/home/zerotoasic/asic_tools/openlane/designs/wrapped_memLCDdriver/memLCDdriver/memLCDdriver.gtkw"
+[dumpfile] "/home/zerotoasic/dev-asic/ZeroToASIC/caravel_memLCDdriver/verilog/rtl/memLCDdriver/memLCDdriver.vcd"
+[dumpfile_mtime] "Mon May 24 20:32:52 2021"
+[dumpfile_size] 8687763
+[savefile] "/home/zerotoasic/dev-asic/ZeroToASIC/caravel_memLCDdriver/verilog/rtl/memLCDdriver/memLCDdriver.gtkw"
 [timestart] 0
-[size] 1562 902
+[size] 1848 911
 [pos] 2174 28
-*-23.099136 33333400 16666720 33333400 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-17.739435 33333400 16666720 33333400 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] memLCDdriver.
 [sst_width] 233
 [signals_width] 192

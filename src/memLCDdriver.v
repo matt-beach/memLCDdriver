@@ -1,6 +1,16 @@
 `default_nettype none
 `timescale 1ns/1ns
 module memLCDdriver (
+`ifdef USE_POWER_PINS
+    inout vdda1,	// User area 1 3.3V supply
+    inout vdda2,	// User area 2 3.3V supply
+    inout vssa1,	// User area 1 analog ground
+    inout vssa2,	// User area 2 analog ground
+    inout vccd1,	// User area 1 1.8V supply
+    inout vccd2,	// User area 2 1.8v supply
+    inout vssd1,	// User area 1 digital ground
+    inout vssd2,	// User area 2 digital ground
+`endif
     // System Control Signals
     input   i_clk, // 100MHz
     input   i_reset,
@@ -25,9 +35,11 @@ module memLCDdriver (
     output  o_intb,
     output  o_bsp,
     output  o_bck,
-    output  [5:0] o_rgb
+    output  [5:0] o_rgb,
+    // Output enable (active low)
+    output  [19:0] o_oeb
 );
-    
+
     wire        w_clk_vcom;
     wire [7:0]  w_spi_data;
     wire [5:0]  w_lcd_data;
@@ -42,6 +54,9 @@ module memLCDdriver (
     reg         r_va;
     reg         r_vb;
     reg         r_vcom;
+
+    // Always have outputs active.
+    assign o_oeb = 20'b0;
 
     // SPI Reciever
     spi_s spi_s(

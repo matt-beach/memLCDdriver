@@ -66,7 +66,7 @@ async def test_all(dut):
     
     dut.i_vcom_start <= 1
     
-    await send_lcd_line(dut, 128)
+    await send_lcd_line(dut, 8)
     while (dut.o_rempty == 0):
         await ClockCycles(dut.i_clk, 1)
 
