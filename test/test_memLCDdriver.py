@@ -70,5 +70,8 @@ async def test_all(dut):
     while (dut.o_rempty == 0):
         await ClockCycles(dut.i_clk, 1)
 
-    
     await ClockCycles(dut.i_clk, 5000) # .050ms
+
+    assert dut.memlcd_fsm.r_count_v == 8
+    assert dut.memlcd_fsm.r_count_h == 121
+    assert dut.o_rempty == 1

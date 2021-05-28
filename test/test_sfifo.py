@@ -37,4 +37,6 @@ async def test_all(dut):
         await ClockCycles(dut.i_clk, 1)
     dut.i_rinc <= 0
 
+    assert dut.o_rdata == 15
+
     await ClockCycles(dut.i_clk, 5)

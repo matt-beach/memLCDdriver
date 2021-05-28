@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
-[*] Fri Apr 30 20:52:43 2021
+[*] Fri May 28 18:51:19 2021
 [*]
-[dumpfile] "/home/zerotoasic/memLCDdriver/spi_s.vcd"
-[dumpfile_mtime] "Fri Apr 30 20:52:36 2021"
-[dumpfile_size] 21497
-[savefile] "/home/zerotoasic/memLCDdriver/spi_s.gtkw"
+[dumpfile] "/home/zerotoasic/dev-asic/memLCDdriver/spi_s.vcd"
+[dumpfile_mtime] "Fri May 28 18:50:50 2021"
+[dumpfile_size] 18135
+[savefile] "/home/zerotoasic/dev-asic/memLCDdriver/spi_s.gtkw"
 [timestart] 0
 [size] 1338 600
 [pos] -1 -1
-*-30.359640 6470000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-20.393856 6470000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [sst_width] 233
 [signals_width] 229
 [sst_expanded] 1
@@ -17,7 +17,6 @@
 @28
 spi_s.i_clk
 spi_s.i_reset
-spi_s.i_spi_nss
 spi_s.i_spi_clk
 spi_s.i_spi_mosi
 @22
@@ -28,7 +27,6 @@ spi_s.o_rx_dataValid
 -
 -
 @28
-spi_s.r_spi_nss
 spi_s.r_prev_spi_nss
 spi_s.r_spi_clk
 spi_s.r_prev_spi_clk

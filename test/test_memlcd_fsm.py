@@ -21,7 +21,7 @@ async def test_all(dut):
 
     dut.i_rempty <= 0
     data = 0x01
-    for i in range(1000000):
+    for i in range(100000):
         if (dut.o_rinc == 1):
             dut.i_data  <= data
             data = data + 0x01
