@@ -9,7 +9,7 @@ SEED = 1
 # COCOTB variables
 export COCOTB_REDUCED_LOG_FMT=1
 
-all: test_memLCDdriver test_sfifo test_afifo test_spi_s
+all: test_memLCDdriver test_sfifo test_spi_s test_memlcd_fsm
 
 # if you run rules with NOASSERT=1 it will set PYTHONOPTIMIZE, which turns off assertions in the tests
 test_memLCDdriver:
@@ -17,12 +17,6 @@ test_memLCDdriver:
 	mkdir sim_build/
 	iverilog -o sim_build/sim.vvp -s memLCDdriver -s dump -g2012 src/memLCDdriver.v test/dump_memLCDdriver.v src/ src/memlcd_fsm.v src/clockdiv.v src/spi_s.v src/sfifo.v src/fifomem.v
 	PYTHONOPTIMIZE=${NOASSERT} MODULE=test.test_memLCDdriver vvp -M $$(cocotb-config --prefix)/cocotb/libs -m libcocotbvpi_icarus sim_build/sim.vvp
-
-test_afifo:
-	rm -rf sim_build/
-	mkdir sim_build/
-	iverilog -o sim_build/sim.vvp -s afifo -s dump -g2012 src/afifo.v test/dump_afifo.v src/ src/async_cmp.v src/fifomem.v src/rptr_empty.v src/wptr_full.v
-	PYTHONOPTIMIZE=${NOASSERT} MODULE=test.test_afifo vvp -M $$(cocotb-config --prefix)/cocotb/libs -m libcocotbvpi_icarus sim_build/sim.vvp
 
 test_sfifo:
 	rm -rf sim_build/
