@@ -17,24 +17,28 @@ test_memLCDdriver:
 	mkdir sim_build/
 	iverilog -o sim_build/sim.vvp -s memLCDdriver -s dump -g2012 src/memLCDdriver.v test/dump_memLCDdriver.v src/ src/memlcd_fsm.v src/clockdiv.v src/spi_s.v src/sfifo.v src/fifomem.v
 	PYTHONOPTIMIZE=${NOASSERT} MODULE=test.test_memLCDdriver vvp -M $$(cocotb-config --prefix)/cocotb/libs -m libcocotbvpi_icarus sim_build/sim.vvp
+	! grep failure results.xml
 
 test_sfifo:
 	rm -rf sim_build/
 	mkdir sim_build/
 	iverilog -o sim_build/sim.vvp -s sfifo -s dump -g2012 src/sfifo.v test/dump_sfifo.v src/ src/fifomem.v
 	PYTHONOPTIMIZE=${NOASSERT} MODULE=test.test_sfifo vvp -M $$(cocotb-config --prefix)/cocotb/libs -m libcocotbvpi_icarus sim_build/sim.vvp
+	! grep failure results.xml
 
 test_spi_s:
 	rm -rf sim_build/
 	mkdir sim_build/
 	iverilog -o sim_build/sim.vvp -s spi_s -s dump -g2012 src/spi_s.v test/dump_spi_s.v src/
 	PYTHONOPTIMIZE=${NOASSERT} MODULE=test.test_spi_s vvp -M $$(cocotb-config --prefix)/cocotb/libs -m libcocotbvpi_icarus sim_build/sim.vvp
+	! grep failure results.xml
 
 test_memlcd_fsm:
 	rm -rf sim_build/
 	mkdir sim_build/
 	iverilog -o sim_build/sim.vvp -s memlcd_fsm -s dump -g2012 src/memlcd_fsm.v test/dump_memlcd_fsm.v src/ src/clockdiv.v
 	PYTHONOPTIMIZE=${NOASSERT} MODULE=test.test_memlcd_fsm vvp -M $$(cocotb-config --prefix)/cocotb/libs -m libcocotbvpi_icarus sim_build/sim.vvp
+	! grep failure results.xml
 
 show_%: %.vcd %.gtkw
 	gtkwave $^
